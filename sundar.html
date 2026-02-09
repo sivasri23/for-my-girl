@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>For My Girl Sahana 💖</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Pacifico', cursive;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            background: linear-gradient(-45deg, #ff9ad5, #b57bff, #ff6ec7, #845ec2);
+            background-size: 400% 400%;
+            animation: galaxyBG 12s ease infinite;
+        }
+
+        @keyframes galaxyBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .page {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(6px);
+        }
+
+        .active {
+            display: flex;
+        }
+
+        button {
+            padding: 12px 26px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(45deg, #ffffff, #ffd6f6);
+            color: #b30086;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 1);
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        /* Light particles */
+        .lightParticle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 4s infinite alternate, floatDown 10s linear infinite;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: 0.2;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes floatDown {
+            from {
+                transform: translateY(-10vh);
+            }
+
+            to {
+                transform: translateY(110vh);
+            }
+        }
+
+        /* Balloons */
+        .balloon {
+            width: 80px;
+            height: 100px;
+            background: radial-gradient(circle, #ff66cc, #cc00ff);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 35%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            transition: 0.4s;
+        }
+
+        /* Cake lights */
+        .blinkLight {
+            width: 15px;
+            height: 15px;
+            background: yellow;
+            border-radius: 50%;
+            margin: 5px;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            from {
+                opacity: 0.3
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .envelope {
+            width: 120px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio autoplay loop>
+        <source src="music.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Floating hearts
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.innerHTML = "💖";
+            heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }, 500);
+
+        // Light particles
+        setInterval(() => {
+            const light = document.createElement("div");
+            light.className = "lightParticle";
+            light.style.left = Math.random() * 100 + "vw";
+            document.body.appendChild(light);
+            setTimeout(() => light.remove(), 8000);
+        }, 400);
+    </script>
+
+    <!-- PAGES -->
+
+    <div class="page active" id="p1">
+        <h1>For My Girl Sahana 💖 It's Time!</h1>
+        <h2 id="timer"></h2>
+        <button onclick="nextPage()">Begin</button>
+    </div>
+
+    <div class="page" id="p2">
+        <h1>Our bond in three words</h1>
+        <h2>Sweet 💗 Loyal 🤝 My Rock 🪨</h2>
+        <button onclick="nextPage()">Next</button>
+    </div>
+
+    <div class="page" id="p3">
+        <h1>Happy Birthday My Sweet Girl Sahana 🎉</h1>
+        <button onclick="nextPage()">Next</button>
+    </div>
+
+    <div class="page" id="p4">
+        <h1>I made something special for you 💝</h1>
+        <button onclick="nextPage()">Let's Go</button>
+    </div>
+
+    <div class="page" id="p5">
+        <h1>Let's Celebrate! 🎈</h1>
+        <button onclick="startBalloons()">Blow the Ballons Cutie</button>
+        <h2 id="balloonMsg"></h2>
+    </div>
+
+    <div class="page" id="p6">
+        <div style="display:flex;">
+            <div class="blinkLight"></div>
+            <div class="blinkLight"></div>
+            <div class="blinkLight"></div>
+            <div class="blinkLight"></div>
+            <div class="blinkLight"></div>
+            <div class="blinkLight"></div>
+        </div>
+        <h2>Happy Birthday My Girl 🎂</h2>
+        <img src=" " width="200">
+        <button onclick="launchFireworks(); nextPage();">Decorate the Cake</button>
+    </div>
+
+    <div class="page" id="p7">
+        <h1>Blow the candles 🕯️</h1>
+        <button onclick="nextPage()">Cut the Cake</button>
+    </div>
+
+    <div class="page" id="p8">
+        <h1>A Special Message 💌</h1>
+        <button onclick="nextPage()">Open Message</button>
+    </div>
+
+    <div class="page" id="p9">
+        <h2>A Message From My Heart</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" class="envelope" onclick="nextPage()">
+    </div>
+
+    <div class="page" id="p10">
+        <h2>My Dearest Sahana 💖</h2>
+        <p>
+            From the moment you came into my life, everything became brighter.<br><br>
+            You are my happiness, my strength, and my sweetest blessing.<br><br>
+            Our bond is sweet, loyal, and my rock forever.<br><br>
+            I love you more than words can ever say. 💗
+        </p>
+    </div>
+
+    <script>
+        let current = 1;
+        function nextPage() {
+            document.getElementById("p" + current).classList.remove("active");
+            current++;
+            document.getElementById("p" + current).classList.add("active");
+            if (current === 10) { launchFireworks(); }
+        }
+
+        // Timer Clock
+        setInterval(() => {
+            let now = new Date();
+            document.getElementById("timer").innerHTML =
+                now.getHours() + " hrs : " + now.getMinutes() + " min : " + now.getSeconds() + " sec";
+        }, 1000);
+
+        // Balloons Surprise
+        function startBalloons() {
+            let words = ["You", "Are", "So", "Special"];
+            let count = 0;
+            let created = [];
+
+            words.forEach((word, i) => {
+                let b = document.createElement("div");
+                b.className = "balloon";
+                b.innerText = "🎈";
+                b.style.left = (20 + i * 18) + "vw";
+                document.body.appendChild(b);
+                created.push(b);
+
+                b.onclick = () => {
+                    b.innerText = word;
+                    b.style.background = "#ff85c1";
+                    b.style.transform = "scale(1.2)";
+                    count++;
+                    if (count === 4) {
+                        document.getElementById("balloonMsg").innerText = "You Are So Special 💖";
+                        setTimeout(() => { created.forEach(x => x.remove()); nextPage(); }, 2000);
+                    }
+                };
+            });
+        }
+
+        // Fireworks
+        function launchFireworks() {
+            var duration = 4 * 1000;
+            var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 6, angle: 60, spread: 55, origin: { x: 0 } });
+                confetti({ particleCount: 6, angle: 120, spread: 55, origin: { x: 1 } });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+        }
+    </script>
+
+</body>
+
+</html>
