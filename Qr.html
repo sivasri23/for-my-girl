@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Heart QR for Sahana 💖</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff9ad5, #b57bff);
+            font-family: sans-serif;
+            flex-direction: column;
+        }
+
+        #qrcode {
+            padding: 20px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 0 30px pink;
+            position: relative;
+        }
+
+        /* Heart overlay */
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            color: #ff4da6;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Scan With Love 💖</h2>
+
+    <div id="qrcode">
+        <div class="heart">💖</div>
+    </div>
+
+    <script>
+        new QRCode(document.getElementById("qrcode"), {
+            text: "https://YOUR-WEBSITE-LINK-HERE.com",
+            width: 260,
+            height: 260,
+            colorDark: "#b30086",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+
+</body>
+
+</html>
